@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.firebasechatsim.ui.theme.FirebaseChatSimTheme
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,19 +24,39 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private val TAG = "FirebaseChatSim"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Initialize Firebase
-        database = FirebaseDatabase.getInstance().reference
-        val statusRef = database.child("status")
-        val clientId = "Client_${System.currentTimeMillis() % 1000}"  // Unique clientId
+        // Firebase Authentication
+        auth = FirebaseAuth.getInstance()
 
-        Log.d(TAG, "Firebase initialized!")
-        Log.d(TAG, "\uD83D\uDD17 Watching /status for live updates...")
+        // Initialize Firebase Real-Time Database
+        database = FirebaseDatabase.getInstance().reference
+
+        val existingUser = auth.currentUser
+        if (existingUser != null) {
+            val clientId = existingUser.uid
+            Log.d(TAG, "Welcome back! clientId = $clientId")
+            startStatusFlow(clientId)
+        } else {
+            auth.signInAnonymously()
+                .addOnSuccessListener { result ->
+                    val clientId = result.user?.uid ?: "unknown"
+                    Log.d(TAG, "Signed in anonymously. clientId = $clientId")
+                    startStatusFlow(clientId)
+                }
+                .addOnFailureListener { e ->
+                    Log.d(TAG, "Anonymous sign-in FAILED: ${e.message}")
+                }
+        }
+    }
+
+    private fun startStatusFlow(clientId: String) {
+        val statusRef = database.child("status")
 
         // REAL-TIME LISTENER - Core Firebase Feature
         statusRef.addValueEventListener(object : ValueEventListener {
@@ -49,7 +70,7 @@ class MainActivity : ComponentActivity() {
             }
         })
 
-        // Send unique status every 10 seconds
+        // Send status every 10 seconds
         lifecycleScope.launch {
             while (true) {
                 delay(10000)

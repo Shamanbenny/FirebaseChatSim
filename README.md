@@ -59,3 +59,5 @@ TBC...
 - [X] Database shows JSON tree in Firebase Console
 - [X] Test mode allows read/write
 - [X] Multiple emulators sync simultaneously
+- [X] Clients are assigned a unique clientId via Anonymous Firebase Authentication
+- [ ] Move from Status listener to Direct Messaging
