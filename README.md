@@ -51,10 +51,11 @@ TBC...
 2. **Run → Run 'app'** on first emulator
 3. **Run → Run 'app'** on second emulator (same APK)
 4. Watch Logcat for real-time messages across clients
+   (Filter with `package:mine tag:FirebaseChatSim is:debug`)
 
 ## Testing Checklist
-- [ ] Messages appear instantly across all clients
-- [ ] Each client has unique ID
-- [ ] Database shows JSON tree in Firebase Console
-- [ ] Test mode allows read/write
-- [ ] Multiple emulators sync simultaneously
+- [X] Messages appear instantly across all clients
+- [X] Each client has unique ID
+- [X] Database shows JSON tree in Firebase Console
+- [X] Test mode allows read/write
+- [X] Multiple emulators sync simultaneously
