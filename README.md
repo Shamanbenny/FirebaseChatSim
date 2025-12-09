@@ -61,3 +61,6 @@ TBC...
 - [X] Multiple emulators sync simultaneously
 - [X] Clients are assigned a unique clientId via Anonymous Firebase Authentication
 - [ ] Move from Status listener to Direct Messaging
+- [ ] Functionality to add new Connections (Every client starts with no connection,
+  enter valid clientId to see when they are online)
+- [ ] Add a "Delete Anonymous Account" button to permanently log out and remove data on client.
