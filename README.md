@@ -41,6 +41,9 @@ File → New → New Project → Empty Activity
 Afterwards, select "Add the Realtime Database SDK to your app"**
 ```
 
+### 2.5. **[IMPORTANT]** As a reminder, *NEVER* commit `app/google-services.json`.
+This should have been handled by updating `.gitignore` in project root. (You have been warned!)
+
 ### 3. Run Multi-Client Simulation
 1. Create 2-3 AVDs (API 30+)
 2. **Run → Run 'app'** on first emulator
