@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import uniffi.dkls.*
 
 data class PresenceInfo(
     val clientId: String,
@@ -134,6 +135,11 @@ fun WatchlistScreen(
 }
 
 class MainActivity : ComponentActivity() {
+    companion object {
+        init {
+            System.loadLibrary("dkls")  // matches `libdkls.so`
+        }
+    }
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private val TAG = "FirebaseChatSim"

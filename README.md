@@ -41,12 +41,7 @@ File → New → New Project → Empty Activity
 Afterwards, select "Add the Realtime Database SDK to your app"**
 ```
 
-### 3. Implement Chat Client
-```
-TBC...
-```
-
-### 4. Run Multi-Client Simulation
+### 3. Run Multi-Client Simulation
 1. Create 2-3 AVDs (API 30+)
 2. **Run → Run 'app'** on first emulator
 3. **Run → Run 'app'** on second emulator (same APK)
@@ -63,4 +58,56 @@ TBC...
 - [ ] Move from Status listener to Direct Messaging
 - [ ] Functionality to add new Connections (Every client starts with no connection,
   enter valid clientId to see when they are online)
+- [ ] Persistent Connections
 - [ ] Add a "Delete Anonymous Account" button to permanently log out and remove data on client.
+
+## Importing [dkls-wrapper](https://github.com/kshehata/dkls-wrapper/tree/main) as Modules
+
+### 1. In Android Studio: **File → New Module → Android Library** (call it e.g. `dklswrapper`).
+
+### 2. In that module:
+- Place the generated Kotlin UniFFI files into `dklswrapper/src/main/java`.
+- Place the generated `jniLibs` folder into `dklswrapper/src/main/jniLibs`.
+
+### 3. In `dklswrapper/build.gradle.kts`, add UniFFI runtime dependencies:
+```
+dependencies {
+    implementation("net.java.dev.jna:jna:5.12.0@aar")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+}
+```
+Reference: [UniFFI User Guide - Kotlin's Integrating with Gradle](https://mozilla.github.io/uniffi-rs/latest/kotlin/gradle.html)
+
+### 4. Ensure that the module is included in your `settings.gradle` and that your app module depends on it:
+```
+// Within settings.gradle ...
+include(":app", ":dklsbindings")
+
+// Within app/build.gradle ...
+dependencies {
+    implementation(project(":dklsbindings"))
+}
+```
+
+### 5. Sync Gradle with your project.
+
+### 6. Now, you should be able to load the DKLS native library in Kotlin.
+```
+import uniffi.dkls.*
+// ...
+class MainActivity : ComponentActivity() {
+
+    companion object {
+        init {
+            System.loadLibrary("dkls") // matches libdkls.so
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // now DKLS UniFFI-generated classes can call into Rust
+    }
+}
+```
+
+### Refer to [`dklswrapper.md`](docs/dklswrapper.md) for API documentation surrounding `dklswrapper` module.
