@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.credentials.exceptions.domerrors.NetworkError
 import androidx.lifecycle.lifecycleScope
 import com.example.firebasechatsim.ui.theme.FirebaseChatSimTheme
@@ -30,6 +31,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -58,13 +60,96 @@ data class InviteData(
     val type: String = "",
     val initiatorId: String = "",
     val targetId: String = "",
-    val instanceId: InstanceId,
-    val partyVKs: List<NodeVerifyingKey> = emptyList(),
+    val instanceIdBase64: String = "",  // Base64-encoded InstanceId bytes
+    val partyVKsBase64: List<String> = emptyList(),  // Base64-encoded NodeVerifyingKey bytes
     val threshold: Int = 0,
     val total: Int = 0,
     val timestamp: Long = 0L,
     val status: String = ""
-)
+) {
+    // Helper to convert back to DKLS objects
+    fun toInstanceId(): InstanceId {
+        val bytes = Base64.decode(instanceIdBase64, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+        return InstanceId.fromBytes(bytes)
+    }
+
+    fun getPartyVKs(): List<NodeVerifyingKey> {
+        return partyVKsBase64.map { vkBase64 ->
+            val bytes = Base64.decode(vkBase64, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+            NodeVerifyingKey.fromBytes(bytes)
+        }
+    }
+}
+
+class FirebaseNetworkInterface(
+    private val database: DatabaseReference,
+    private val instanceIdBase64: String,
+    private val ownClientId: String,
+    private val peerClientId: String
+) : NetworkInterface {
+    private val messagesRef = database.child("dkg_messages").child(instanceIdBase64)
+    private val messageQueue = mutableListOf<DataSnapshot>()
+    private var listener: ValueEventListener? = null
+    private var listenerRegistered = false
+
+    init {
+        // Register listener once on init for continuous monitoring
+        if (!listenerRegistered) {
+            listener = object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // Collect all current matching messages (to=peerClientId)
+                    val newMessages = snapshot.children
+                        .filter { msg ->
+                            val from = msg.child("from").getValue(String::class.java)
+                            val to = msg.child("to").getValue(String::class.java)
+                            from == peerClientId && to == ownClientId
+                        }
+                        .toList()
+                    messageQueue.addAll(newMessages)
+                    //Log.d("FirebaseChatSim", "Listener added ${newMessages.size} peer messages to queue. Total queue: ${messageQueue.size}")
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("FirebaseChatSim", "Receive listener cancelled", error.toException())
+                }
+            }
+            messagesRef.addValueEventListener(listener!!)
+            listenerRegistered = true
+            Log.d("FirebaseChatSim", "Receive listener registered for peer $peerClientId")
+        }
+    }
+
+    override suspend fun send(data: ByteArray) {
+        try {
+            val messagePush = messagesRef.push()
+            val messageData = mapOf(
+                "from" to ownClientId,
+                "to" to peerClientId,
+                "data" to Base64.encodeToString(data, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP),
+                "timestamp" to ServerValue.TIMESTAMP
+            )
+            messagePush.setValue(messageData).await()
+            Log.d("FirebaseChatSim", "DKG send: ${data.size}B to $peerClientId")
+        } catch (e: Exception) {
+            Log.e("FirebaseChatSim", "DKG send failed", e)
+            throw RuntimeException("DKG send failed", e)
+        }
+    }
+
+    override suspend fun receive(): ByteArray {
+        return withTimeoutOrNull(45000) {
+            // Wait for and process next message in queue
+            while (messageQueue.isEmpty()) {
+                delay(100) // Poll queue efficiently
+            }
+            val message = messageQueue.removeAt(0) // Dequeue oldest
+            val dataB64 = message.child("data").getValue(String::class.java)!!
+            val data = Base64.decode(dataB64, Base64.DEFAULT or Base64.URL_SAFE or Base64.NO_WRAP)
+            message.ref.removeValue().await() // Ack-delete
+            Log.d("FirebaseChatSim", "DKG receive: ${data.size}B from $peerClientId")
+            data
+        } ?: throw RuntimeException("DKG receive timeout")
+    }
+}
 
 object DklsStatus {
     // Status codes
@@ -107,15 +192,24 @@ fun StatusScreen(
     ownClientId: String,
     database: DatabaseReference,
     context: Context,
-    onAddDevice: (String) -> Unit,  // targetClientId
-    onAcceptInvite: (InviteData) -> Unit  // InviteData
+    dklsKeyshare: Keyshare?,
+    onAddDevice: (String) -> Unit,
+    onAcceptInvite: (InviteData) -> Unit
 ) {
     var inputClientId by remember { mutableStateOf("") }
-    val dklsStatus by remember { derivedStateOf { DklsStatus.getStatus() } }
+    var dklsStatus by remember { mutableStateOf(DklsStatus.getStatus()) }
     val coroutineScope = rememberCoroutineScope()
 
     // Pending invites state
     var pendingInvites by remember { mutableStateOf<List<InviteData>>(emptyList()) }
+
+    // Poll status every 500ms for reactivity
+    LaunchedEffect(Unit) {
+        while (true) {
+            dklsStatus = DklsStatus.getStatus()
+            delay(500)
+        }
+    }
 
     // Listen for incoming invites
     LaunchedEffect(ownClientId) {
@@ -163,7 +257,8 @@ fun StatusScreen(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = "DKLS Status", style = MaterialTheme.typography.headlineSmall,
+                Text(text = "DKLS Status",
+                    style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold)
                 Text(text = dklsStatus)
                 if (DklsStatus.currentCode == DklsStatus.STATUS_NO_KEY) {
@@ -181,6 +276,30 @@ fun StatusScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text("Add Device")
+                    }
+                } else if (DklsStatus.currentCode == DklsStatus.STATUS_KEY_READY) {
+                    // Keyshare display
+                    dklsKeyshare?.let { keyshare ->
+                        var keyshareText by remember { mutableStateOf("Computing...") }
+
+                        // Helper extension to print Keyshare to String
+                        LaunchedEffect(keyshare) {
+                            try {
+                                keyshareText = keyshare.keyshareString()
+                            } catch (e: Exception) {
+                                keyshareText = "Print failed: ${e.message}"
+                            }
+                        }
+                        Text(
+                            text = keyshareText,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                        Button(
+                            onClick = { keyshareText.copyToClipboard(context) },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text("Copy Full Keyshare")
+                        }
                     }
                 }
             }
@@ -205,7 +324,7 @@ fun StatusScreen(
                             ) {
                                 Column(modifier = Modifier.padding(12.dp)) {
                                     Text(
-                                        text = "From: ${invite.initiatorId.take(8)}...",
+                                        text = "From: ${invite.initiatorId}",
                                         style = MaterialTheme.typography.bodyLarge,
                                         fontWeight = FontWeight.Bold
                                     )
@@ -242,7 +361,7 @@ class MainActivity : ComponentActivity() {
     private val TAG = "FirebaseChatSim"
 
     // DKLS state - stored locally only
-    private var dklsKeyshare: Keyshare? = null
+    private var dklsKeyshare by mutableStateOf<Keyshare?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -319,46 +438,62 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             try {
                 val instanceId = InstanceId.fromEntropy()
+                val instanceIdBytes = instanceId.toBytes()
                 val ownNode = DkgNode.starter(instanceId, threshold.toUByte())
-                val ownVK = ownNode.myVk().toString()
+                val ownVKBytes = ownNode.myVk().toBytes()
 
                 val existingUser = auth.currentUser ?: throw RuntimeException("auth.currentUser is null?!")
                 val ownClientId = existingUser.uid
+                val inviteKey = ownClientId
 
-                val inviteData = mapOf(
+                // JSON-compatible map for Firebase
+                val inviteMap = mapOf(
                     "type" to "create",
                     "initiatorId" to ownClientId,
                     "targetId" to otherClientId,
-                    "instanceId" to instanceId,
-                    "partyVKs" to listOf(ownVK),
+                    "instanceIdBase64" to Base64.encodeToString(instanceIdBytes, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP),
+                    "partyVKsBase64" to listOf(Base64.encodeToString(ownVKBytes, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)),
                     "threshold" to threshold,
                     "total" to total,
                     "timestamp" to System.currentTimeMillis(),
                     "status" to "pending"
                 )
 
-                // TODO: Fix the call to Firebase's Realtime Database's setValue such that it works with the intended InviteData class.
-                //      Currently, nothing is being reflected as update on the Firebase's Realtime Database due to usage of non-primitive datatype
-                database.child("invites").child(otherClientId).child(ownClientId).setValue(inviteData)
+                database.child("invites").child(otherClientId).child(inviteKey).setValue(inviteMap)
                     .addOnSuccessListener {
                         Toast.makeText(this@MainActivity, "Invite sent to $otherClientId", Toast.LENGTH_SHORT).show()
-                        Log.d(TAG, "DKG invite sent to $otherClientId (instance: $instanceId)")
+                        Log.d(TAG, "DKG invite sent to $otherClientId")
 
                         val inviteListener = object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                val invite = snapshot.getValue(InviteData::class.java)
-                                if (invite?.status == "accepted" && invite.partyVKs.size == 2) {
-                                    Log.d(TAG, "Invite accepted by $otherClientId! Proceeding with DKG...")
-                                    database.child("invites").child(otherClientId).child(ownClientId).removeEventListener(this)
+                                val inviteMap = snapshot.value as? Map<*, *>
+                                val invite = InviteData(
+                                    type = inviteMap?.get("type") as? String ?: "",
+                                    initiatorId = inviteMap?.get("initiatorId") as? String ?: "",
+                                    targetId = inviteMap?.get("targetId") as? String ?: "",
+                                    instanceIdBase64 = inviteMap?.get("instanceIdBase64") as? String ?: "",
+                                    partyVKsBase64 = (inviteMap?.get("partyVKsBase64") as? List<*>)?.map { it.toString() } ?: emptyList(),
+                                    threshold = (inviteMap?.get("threshold") as? Long)?.toInt() ?: 0,
+                                    total = (inviteMap?.get("total") as? Long)?.toInt() ?: 0,
+                                    timestamp = inviteMap?.get("timestamp") as? Long ?: 0L,
+                                    status = inviteMap?.get("status") as? String ?: ""
+                                )
 
-                                    // Add target party's VK and run DKG
-                                    val targetVKs = invite.partyVKs.filter { it != ownNode.myVk() }
-                                    if (targetVKs.isEmpty()) {
+                                if (invite.status == "accepted" && invite.partyVKsBase64.size == 2) {
+                                    Log.d(TAG, "Invite accepted by $otherClientId! Proceeding with DKG...")
+                                    database.child("invites").child(otherClientId).child(inviteKey).removeEventListener(this)
+
+                                    val targetVKs = invite.partyVKsBase64.filter { it != Base64.encodeToString(ownVKBytes, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP) }
+                                    if (targetVKs.isNotEmpty()) {
                                         try {
-                                            targetVKs.forEach { ownNode.addParty(it) }
-                                            performDKG(ownNode)
+                                            targetVKs.forEach { targetVKBase64 ->
+                                                val targetVKBytes = Base64.decode(targetVKBase64, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+                                                ownNode.addParty(NodeVerifyingKey.fromBytes(targetVKBytes))
+                                            }
+                                            val instanceIdBase64 = Base64.encodeToString(instanceId.toBytes(), Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+                                            performDKG(ownNode, instanceIdBase64, otherClientId)
                                         } catch (e: Exception) {
-                                            Log.e(TAG, "Failed to add party VK and run DKG", e)
+                                            Log.e(TAG, "Failed to add party VKs and run DKG", e)
                                             DklsStatus.setStatus(DklsStatus.STATUS_ERROR)
                                         }
                                     }
@@ -371,24 +506,17 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        // Listen for changes to this specific invite
-                        database.child("invites").child(otherClientId).child(ownClientId)
-                            .addValueEventListener(inviteListener)
+                        database.child("invites").child(otherClientId).child(inviteKey).addValueEventListener(inviteListener)
 
-                        // Auto-cleanup after 2 minutes timeout
                         lifecycleScope.launch {
-                            kotlinx.coroutines.delay(120_000) // 2 minutes
-                            database.child("invites").child(otherClientId).child(ownClientId)
-                                .removeEventListener(inviteListener)
-                            Log.d(TAG, "DKG invite timeout for $otherClientId")
+                            kotlinx.coroutines.delay(120_000)
+                            database.child("invites").child(otherClientId).child(inviteKey).removeValue().await()
                         }
                     }
                     .addOnFailureListener { e ->
                         Log.e(TAG, "Failed to send invite", e)
                         DklsStatus.setStatus(DklsStatus.STATUS_ERROR)
                     }
-
-                // Continue
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to create DKG invite", e)
                 DklsStatus.setStatus(DklsStatus.STATUS_ERROR)
@@ -399,28 +527,30 @@ class MainActivity : ComponentActivity() {
     private fun handleAcceptInvite(invite: InviteData) {
         lifecycleScope.launch {
             try {
+                val instanceId = invite.toInstanceId()
                 val ownNode = DkgNode(
-                    instance = invite.instanceId,
+                    instance = instanceId,
                     threshold = invite.threshold.toUByte(),
-                    partyVk = invite.partyVKs
+                    partyVk = invite.getPartyVKs()
                 )
-                val ownVK = ownNode.myVk().toString()
-                val allVKs = invite.partyVKs + ownVK
+                val ownVKBytes = ownNode.myVk().toBytes()
 
-                // Update invite with our VK and mark accepted
-                val updateData = mapOf(
+                val allVKsBase64 = invite.partyVKsBase64 + Base64.encodeToString(ownVKBytes, Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+
+                val updateMap = mapOf(
                     "status" to "accepted",
-                    "partyVKs" to allVKs,
+                    "partyVKsBase64" to allVKsBase64,
                     "timestamp" to System.currentTimeMillis()
                 )
 
                 val existingUser = auth.currentUser ?: throw RuntimeException("auth.currentUser is null?!")
                 val ownClientId = existingUser.uid
 
-                database.child("invites").child(ownClientId).child(invite.initiatorId).updateChildren(updateData)
+                database.child("invites").child(ownClientId).child(invite.initiatorId).updateChildren(updateMap)
                     .addOnSuccessListener {
                         Log.d(TAG, "Invite accepted, VK sent back")
-                        performDKG(ownNode)
+                        val instanceIdBase64 = Base64.encodeToString(invite.toInstanceId().toBytes(), Base64.DEFAULT + Base64.URL_SAFE + Base64.NO_WRAP)
+                        performDKG(ownNode, instanceIdBase64, invite.initiatorId)
                     }
                     .addOnFailureListener { e ->
                         Log.e(TAG, "Failed to update invite", e)
@@ -434,24 +564,48 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun performDKG(node: DkgNode) {
+    private fun performDKG(node: DkgNode, instanceIdBase64: String, peerClientId: String) {
         lifecycleScope.launch {
             try {
-                val runner = DkgRunner()
-                runner.initializeTokioRuntime()
-                dklsKeyshare = runner.run(node)
+                Log.d(TAG, "Performing DKG with network...")
+                val existingUser = auth.currentUser ?: throw RuntimeException("auth.currentUser null")
+                val ownClientId = existingUser.uid
+
+                // Create Firebase network interface
+                val networkInterface = FirebaseNetworkInterface(database, instanceIdBase64, ownClientId, peerClientId)
+
+                // ✅ DIRECTLY use networkInterface with doKeygen!
+                Log.d(TAG, "About to call node.doKeygen()...")
+                dklsKeyshare = node.doKeygen(networkInterface)
+                Log.d(TAG, "doKeygen() completed!, ${dklsKeyshare!!.print()}")
+
                 DklsStatus.setStatus(DklsStatus.STATUS_KEY_READY)
                 Toast.makeText(this@MainActivity, "✅ 2-of-2 keyshare created!", Toast.LENGTH_LONG).show()
-                Log.d(TAG, "DKG completed successfully")
+                Log.d(TAG, "DKG completed successfully with $peerClientId")
+
+                // Cleanup DKG messages
+                try {
+                    database.child("dkg_messages").child(instanceIdBase64).removeValue().await()
+                    Log.d(TAG, "Cleaned dkg_messages/$instanceIdBase64")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Cleanup dkg_messages failed", e)
+                }
+
+                // Also clean specific invite if initiator
+                val inviteRef = database.child("invites").child(peerClientId).child(ownClientId)
+                try {
+                    inviteRef.removeValue().await()
+                    Log.d(TAG, "Cleaned invite $peerClientId/$ownClientId")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Cleanup invite failed", e)
+                }
+
             } catch (e: KeygenException) {
                 DklsStatus.setStatus(DklsStatus.STATUS_KEYGEN_ERROR)
                 Log.e(TAG, "DKLS Keygen error", e)
-            } catch (e: NetworkException) {
-                DklsStatus.setStatus(DklsStatus.STATUS_NETWORK_ERROR)
-                Log.e(TAG, "DKLS Network error", e)
             } catch (e: Exception) {
                 DklsStatus.setStatus(DklsStatus.STATUS_ERROR)
-                Log.e(TAG, "DKLS error", e)
+                Log.e(TAG, "DKG failed", e)
             }
         }
     }
@@ -465,7 +619,7 @@ class MainActivity : ComponentActivity() {
                 val now = System.currentTimeMillis()
                 presenceRef.setValue(now)
                     .addOnSuccessListener {
-                        Log.d(TAG, "$clientId - Last Seen: $now")
+                        //Log.d(TAG, "$clientId - Last Seen: $now")
                     }
                 delay(10_000)
             }
@@ -479,6 +633,7 @@ class MainActivity : ComponentActivity() {
                     ownClientId = ownClientId,
                     database = database,
                     context = LocalContext.current,
+                    dklsKeyshare = dklsKeyshare,
                     onAddDevice = ::handleAddDevice,
                     onAcceptInvite = ::handleAcceptInvite
                 )

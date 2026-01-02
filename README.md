@@ -58,8 +58,8 @@ This should have been handled by updating `.gitignore` in project root. (You hav
 - [X] Test mode allows read/write
 - [X] Multiple emulators sync simultaneously
 - [X] Clients are assigned a unique clientId via Anonymous Firebase Authentication
-- [ ] Incorporate [DKLS](https://dkls23.silencelaboratories.com/docs/dkls23/index.html) to allow for Threshold Signature Scheme system
-- [ ] Sets up a t-of-n key across all of an individual's devices
+- [X] Incorporate [DKLS](https://dkls23.silencelaboratories.com/docs/dkls23/index.html) to allow for Threshold Signature Scheme system
+- [X] Successfully perform DKG
 - [ ] Allows [Key Refresh](https://dkls23.silencelaboratories.com/docs/dkls23/#key-refresh) for lost devices/keyshare
 - [ ] Uses key signing for "add friend", "link device", etc.
 

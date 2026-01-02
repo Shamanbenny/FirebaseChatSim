@@ -681,6 +681,10 @@ internal object IntegrityCheckingUniffiLib {
     ): Short
     external fun uniffi_dkls_checksum_method_dkgrunner_run(
     ): Short
+    external fun uniffi_dkls_checksum_method_instanceid_to_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_keyshare_keyshare_string(
+    ): Short
     external fun uniffi_dkls_checksum_method_keyshare_print(
     ): Short
     external fun uniffi_dkls_checksum_method_networkinterface_send(
@@ -691,15 +695,23 @@ internal object IntegrityCheckingUniffiLib {
     ): Short
     external fun uniffi_dkls_checksum_method_networkinterfacetester_test_relay(
     ): Short
+    external fun uniffi_dkls_checksum_method_nodeverifyingkey_to_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_dkgnode_for_id(
+    ): Short
     external fun uniffi_dkls_checksum_constructor_dkgnode_new(
     ): Short
     external fun uniffi_dkls_checksum_constructor_dkgnode_starter(
     ): Short
     external fun uniffi_dkls_checksum_constructor_dkgrunner_new(
     ): Short
+    external fun uniffi_dkls_checksum_constructor_instanceid_from_bytes(
+    ): Short
     external fun uniffi_dkls_checksum_constructor_instanceid_from_entropy(
     ): Short
     external fun uniffi_dkls_checksum_constructor_networkinterfacetester_new(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_nodeverifyingkey_from_bytes(
     ): Short
     external fun ffi_dkls_uniffi_contract_version(
     ): Int
@@ -724,6 +736,8 @@ internal object UniffiLib {
     ): Long
     external fun uniffi_dkls_fn_free_dkgnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
+    external fun uniffi_dkls_fn_constructor_dkgnode_for_id(`instance`: Long,`threshold`: Byte,`numParties`: Byte,`partyId`: Byte,uniffi_out_err: UniffiRustCallStatus, 
+    ): Long
     external fun uniffi_dkls_fn_constructor_dkgnode_new(`instance`: Long,`threshold`: Byte,`partyVk`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
     ): Long
     external fun uniffi_dkls_fn_constructor_dkgnode_starter(`instance`: Long,`threshold`: Byte,uniffi_out_err: UniffiRustCallStatus, 
@@ -750,12 +764,18 @@ internal object UniffiLib {
     ): Long
     external fun uniffi_dkls_fn_free_instanceid(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
+    external fun uniffi_dkls_fn_constructor_instanceid_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): Long
     external fun uniffi_dkls_fn_constructor_instanceid_from_entropy(uniffi_out_err: UniffiRustCallStatus, 
     ): Long
+    external fun uniffi_dkls_fn_method_instanceid_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
     external fun uniffi_dkls_fn_clone_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Long
     external fun uniffi_dkls_fn_free_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
+    external fun uniffi_dkls_fn_method_keyshare_keyshare_string(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
     external fun uniffi_dkls_fn_method_keyshare_print(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
     external fun uniffi_dkls_fn_clone_networkinterface(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
@@ -786,6 +806,10 @@ internal object UniffiLib {
     ): Long
     external fun uniffi_dkls_fn_free_nodeverifyingkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): Unit
+    external fun uniffi_dkls_fn_constructor_nodeverifyingkey_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+    ): Long
+    external fun uniffi_dkls_fn_method_nodeverifyingkey_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+    ): RustBuffer.ByValue
     external fun ffi_dkls_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus, 
     ): RustBuffer.ByValue
     external fun ffi_dkls_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus, 
@@ -923,6 +947,12 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_dkls_checksum_method_dkgrunner_run() != 19288.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_dkls_checksum_method_instanceid_to_bytes() != 5681.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_keyshare_keyshare_string() != 22532.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_dkls_checksum_method_keyshare_print() != 1832.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -938,6 +968,12 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_dkls_checksum_method_networkinterfacetester_test_relay() != 25872.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_dkls_checksum_method_nodeverifyingkey_to_bytes() != 48484.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_dkgnode_for_id() != 22461.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_dkls_checksum_constructor_dkgnode_new() != 31766.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -947,10 +983,16 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_dkls_checksum_constructor_dkgrunner_new() != 38641.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_dkls_checksum_constructor_instanceid_from_bytes() != 52938.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_dkls_checksum_constructor_instanceid_from_entropy() != 30655.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_dkls_checksum_constructor_networkinterfacetester_new() != 14786.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_nodeverifyingkey_from_bytes() != 18608.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
 }
@@ -1658,6 +1700,17 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
 
     
     companion object {
+         fun `forId`(`instance`: InstanceId, `threshold`: kotlin.UByte, `numParties`: kotlin.UByte, `partyId`: kotlin.UByte): DkgNode {
+            return FfiConverterTypeDKGNode.lift(
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_dkgnode_for_id(
+    
+        FfiConverterTypeInstanceId.lower(`instance`),FfiConverterUByte.lower(`threshold`),FfiConverterUByte.lower(`numParties`),FfiConverterUByte.lower(`partyId`),_status)
+}
+    )
+    }
+    
+
          fun `starter`(`instance`: InstanceId, `threshold`: kotlin.UByte): DkgNode {
             return FfiConverterTypeDKGNode.lift(
     uniffiRustCall() { _status ->
@@ -2078,6 +2131,8 @@ public object FfiConverterTypeDKGRunner: FfiConverter<DkgRunner, Long> {
 //
 public interface InstanceIdInterface {
     
+    fun `toBytes`(): kotlin.ByteArray
+    
     companion object
 }
 
@@ -2177,6 +2232,19 @@ open class InstanceId: Disposable, AutoCloseable, InstanceIdInterface
         }
     }
 
+    override fun `toBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_instanceid_to_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
     
 
     
@@ -2184,6 +2252,18 @@ open class InstanceId: Disposable, AutoCloseable, InstanceIdInterface
 
     
     companion object {
+        
+    @Throws(GeneralException::class) fun `fromBytes`(`bytes`: kotlin.ByteArray): InstanceId {
+            return FfiConverterTypeInstanceId.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_instanceid_from_bytes(
+    
+        FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
          fun `fromEntropy`(): InstanceId {
             return FfiConverterTypeInstanceId.lift(
     uniffiRustCall() { _status ->
@@ -2323,6 +2403,8 @@ public object FfiConverterTypeInstanceId: FfiConverter<InstanceId, Long> {
 //
 public interface KeyshareInterface {
     
+    fun `keyshareString`(): kotlin.String
+    
     fun `print`()
     
     companion object
@@ -2423,6 +2505,19 @@ open class Keyshare: Disposable, AutoCloseable, KeyshareInterface
             UniffiLib.uniffi_dkls_fn_clone_keyshare(handle, status)
         }
     }
+
+    override fun `keyshareString`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_keyshare_keyshare_string(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
 
     override fun `print`()
         = 
@@ -3494,6 +3589,8 @@ public object FfiConverterTypeNodeSecretKey: FfiConverter<NodeSecretKey, Long> {
 //
 public interface NodeVerifyingKeyInterface {
     
+    fun `toBytes`(): kotlin.ByteArray
+    
     companion object
 }
 
@@ -3593,17 +3690,40 @@ open class NodeVerifyingKey: Disposable, AutoCloseable, NodeVerifyingKeyInterfac
         }
     }
 
+    override fun `toBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_nodeverifyingkey_to_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
     
 
     
 
+    
+
 
     
+    companion object {
+        
+    @Throws(GeneralException::class) fun `fromBytes`(`bytes`: kotlin.ByteArray): NodeVerifyingKey {
+            return FfiConverterTypeNodeVerifyingKey.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_nodeverifyingkey_from_bytes(
     
-    /**
-     * @suppress
-     */
-    companion object
+        FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
+        
+    }
     
 }
 
@@ -3629,6 +3749,55 @@ public object FfiConverterTypeNodeVerifyingKey: FfiConverter<NodeVerifyingKey, L
     override fun write(value: NodeVerifyingKey, buf: ByteBuffer) {
         buf.putLong(lower(value))
     }
+}
+
+
+
+
+
+sealed class GeneralException(message: String): kotlin.Exception(message) {
+        
+        class InvalidInput(message: String) : GeneralException(message)
+        
+        class Generic(message: String) : GeneralException(message)
+        
+
+    companion object ErrorHandler : UniffiRustCallStatusErrorHandler<GeneralException> {
+        override fun lift(error_buf: RustBuffer.ByValue): GeneralException = FfiConverterTypeGeneralError.lift(error_buf)
+    }
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeGeneralError : FfiConverterRustBuffer<GeneralException> {
+    override fun read(buf: ByteBuffer): GeneralException {
+        
+            return when(buf.getInt()) {
+            1 -> GeneralException.InvalidInput(FfiConverterString.read(buf))
+            2 -> GeneralException.Generic(FfiConverterString.read(buf))
+            else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
+        }
+        
+    }
+
+    override fun allocationSize(value: GeneralException): ULong {
+        return 4UL
+    }
+
+    override fun write(value: GeneralException, buf: ByteBuffer) {
+        when(value) {
+            is GeneralException.InvalidInput -> {
+                buf.putInt(1)
+                Unit
+            }
+            is GeneralException.Generic -> {
+                buf.putInt(2)
+                Unit
+            }
+        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
+    }
+
 }
 
 
