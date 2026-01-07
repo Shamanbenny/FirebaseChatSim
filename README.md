@@ -60,8 +60,9 @@ This should have been handled by updating `.gitignore` in project root. (You hav
 - [X] Clients are assigned a unique clientId via Anonymous Firebase Authentication
 - [X] Incorporate [DKLS](https://dkls23.silencelaboratories.com/docs/dkls23/index.html) to allow for Threshold Signature Scheme system
 - [X] Successfully perform DKG
-- [ ] Allows [Key Refresh](https://dkls23.silencelaboratories.com/docs/dkls23/#key-refresh) for lost devices/keyshare
 - [ ] Uses key signing for "add friend", "link device", etc.
+- [ ] Allows [Key Refresh](https://dkls23.silencelaboratories.com/docs/dkls23/#key-refresh) for lost devices/keyshare
+- [ ] Persistent Keyshares
 
 ## Importing [dkls-wrapper](https://github.com/kshehata/dkls-wrapper/tree/main) as Modules
 

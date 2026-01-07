@@ -669,13 +669,21 @@ internal object IntegrityCheckingUniffiLib {
         uniffiCheckContractApiVersion(this)
         uniffiCheckApiChecksums(this)
     }
-    external fun uniffi_dkls_checksum_method_dkgnode_add_party(
-    ): Short
     external fun uniffi_dkls_checksum_method_dkgnode_do_keygen(
     ): Short
-    external fun uniffi_dkls_checksum_method_dkgnode_my_vk(
+    external fun uniffi_dkls_checksum_method_dkgnode_instance_id(
     ): Short
-    external fun uniffi_dkls_checksum_method_dkgnode_party_vk(
+    external fun uniffi_dkls_checksum_method_dkgnode_party_id(
+    ): Short
+    external fun uniffi_dkls_checksum_method_dkgnode_setup_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_dkgnode_setup_string(
+    ): Short
+    external fun uniffi_dkls_checksum_method_dkgnode_threshold(
+    ): Short
+    external fun uniffi_dkls_checksum_method_dkgnode_update_from_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_dkgnode_update_from_string(
     ): Short
     external fun uniffi_dkls_checksum_method_dkgrunner_initialize_tokio_runtime(
     ): Short
@@ -683,9 +691,13 @@ internal object IntegrityCheckingUniffiLib {
     ): Short
     external fun uniffi_dkls_checksum_method_instanceid_to_bytes(
     ): Short
-    external fun uniffi_dkls_checksum_method_keyshare_keyshare_string(
-    ): Short
     external fun uniffi_dkls_checksum_method_keyshare_print(
+    ): Short
+    external fun uniffi_dkls_checksum_method_keyshare_sk(
+    ): Short
+    external fun uniffi_dkls_checksum_method_keyshare_to_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_keyshare_vk(
     ): Short
     external fun uniffi_dkls_checksum_method_networkinterface_send(
     ): Short
@@ -695,11 +707,39 @@ internal object IntegrityCheckingUniffiLib {
     ): Short
     external fun uniffi_dkls_checksum_method_networkinterfacetester_test_relay(
     ): Short
+    external fun uniffi_dkls_checksum_method_nodesecretkey_to_bytes(
+    ): Short
     external fun uniffi_dkls_checksum_method_nodeverifyingkey_to_bytes(
     ): Short
-    external fun uniffi_dkls_checksum_constructor_dkgnode_for_id(
+    external fun uniffi_dkls_checksum_method_nodeverifyingkey_verify(
     ): Short
-    external fun uniffi_dkls_checksum_constructor_dkgnode_new(
+    external fun uniffi_dkls_checksum_method_signnode_do_sign(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_hash(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_instance_id(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_message(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_num_parties(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_party_id(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_request_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_request_string(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_threshold(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_update_from_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signnode_update_from_string(
+    ): Short
+    external fun uniffi_dkls_checksum_method_signature_to_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_dkgnode_from_setup_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_dkgnode_from_setup_string(
     ): Short
     external fun uniffi_dkls_checksum_constructor_dkgnode_starter(
     ): Short
@@ -709,9 +749,25 @@ internal object IntegrityCheckingUniffiLib {
     ): Short
     external fun uniffi_dkls_checksum_constructor_instanceid_from_entropy(
     ): Short
+    external fun uniffi_dkls_checksum_constructor_keyshare_from_bytes(
+    ): Short
     external fun uniffi_dkls_checksum_constructor_networkinterfacetester_new(
     ): Short
+    external fun uniffi_dkls_checksum_constructor_nodesecretkey_from_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_nodesecretkey_from_entropy(
+    ): Short
     external fun uniffi_dkls_checksum_constructor_nodeverifyingkey_from_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_nodeverifyingkey_from_sk(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_signnode_from_request_bytes(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_signnode_from_request_string(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_signnode_starter(
+    ): Short
+    external fun uniffi_dkls_checksum_constructor_signature_from_bytes(
     ): Short
     external fun ffi_dkls_uniffi_contract_version(
     ): Int
@@ -733,189 +789,253 @@ internal object UniffiLib {
         
     }
     external fun uniffi_dkls_fn_clone_dkgnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_dkgnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_constructor_dkgnode_for_id(`instance`: Long,`threshold`: Byte,`numParties`: Byte,`partyId`: Byte,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_constructor_dkgnode_new(`instance`: Long,`threshold`: Byte,`partyVk`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_constructor_dkgnode_starter(`instance`: Long,`threshold`: Byte,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_dkgnode_add_party(`ptr`: Long,`partyVk`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_method_dkgnode_do_keygen(`ptr`: Long,`interface`: Long,
-    ): Long
-    external fun uniffi_dkls_fn_method_dkgnode_my_vk(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_dkgnode_party_vk(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun uniffi_dkls_fn_clone_dkgrunner(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_dkgrunner(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_constructor_dkgrunner_new(uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_dkgrunner_initialize_tokio_runtime(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_method_dkgrunner_run(`ptr`: Long,`node`: Long,
-    ): Long
-    external fun uniffi_dkls_fn_clone_instanceid(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_instanceid(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_constructor_instanceid_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_constructor_instanceid_from_entropy(uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_instanceid_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun uniffi_dkls_fn_clone_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_method_keyshare_keyshare_string(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun uniffi_dkls_fn_method_keyshare_print(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_clone_networkinterface(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_networkinterface(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_init_callback_vtable_networkinterface(`vtable`: UniffiVTableCallbackInterfaceNetworkInterface,
-    ): Unit
-    external fun uniffi_dkls_fn_method_networkinterface_send(`ptr`: Long,`data`: RustBuffer.ByValue,
-    ): Long
-    external fun uniffi_dkls_fn_method_networkinterface_receive(`ptr`: Long,
-    ): Long
-    external fun uniffi_dkls_fn_clone_networkinterfacetester(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_networkinterfacetester(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_constructor_networkinterfacetester_new(`interface`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_networkinterfacetester_test(`ptr`: Long,
-    ): Long
-    external fun uniffi_dkls_fn_method_networkinterfacetester_test_relay(`ptr`: Long,`data`: RustBuffer.ByValue,
-    ): Long
-    external fun uniffi_dkls_fn_clone_nodesecretkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_nodesecretkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_clone_nodeverifyingkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_free_nodeverifyingkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun uniffi_dkls_fn_constructor_nodeverifyingkey_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun uniffi_dkls_fn_method_nodeverifyingkey_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun ffi_dkls_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun ffi_dkls_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun ffi_dkls_rustbuffer_free(`buf`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
-    external fun ffi_dkls_rustbuffer_reserve(`buf`: RustBuffer.ByValue,`additional`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun ffi_dkls_rust_future_poll_u8(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_u8(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_u8(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_u8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Byte
-    external fun ffi_dkls_rust_future_poll_i8(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_i8(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_i8(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_i8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Byte
-    external fun ffi_dkls_rust_future_poll_u16(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_u16(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_u16(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_u16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Short
-    external fun ffi_dkls_rust_future_poll_i16(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_i16(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_i16(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_i16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Short
-    external fun ffi_dkls_rust_future_poll_u32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_u32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_u32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_u32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Int
-    external fun ffi_dkls_rust_future_poll_i32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_i32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_i32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_i32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Int
-    external fun ffi_dkls_rust_future_poll_u64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_u64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_u64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_u64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun ffi_dkls_rust_future_poll_i64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_i64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_i64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_i64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Long
-    external fun ffi_dkls_rust_future_poll_f32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_f32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_f32(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_f32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Float
-    external fun ffi_dkls_rust_future_poll_f64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_f64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_f64(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_f64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Double
-    external fun ffi_dkls_rust_future_poll_rust_buffer(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_rust_buffer(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_rust_buffer(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_rust_buffer(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): RustBuffer.ByValue
-    external fun ffi_dkls_rust_future_poll_void(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_cancel_void(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_free_void(`handle`: Long,
-    ): Unit
-    external fun ffi_dkls_rust_future_complete_void(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
-    ): Unit
+): Long
+external fun uniffi_dkls_fn_free_dkgnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_dkgnode_from_setup_bytes(`setup`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_dkgnode_from_setup_string(`setupStr`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_dkgnode_starter(`instance`: Long,`threshold`: Byte,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_dkgnode_do_keygen(`ptr`: Long,`interface`: Long,
+): Long
+external fun uniffi_dkls_fn_method_dkgnode_instance_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_dkgnode_party_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_dkls_fn_method_dkgnode_setup_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_dkgnode_setup_string(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_dkgnode_threshold(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_dkls_fn_method_dkgnode_update_from_bytes(`ptr`: Long,`setup`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_method_dkgnode_update_from_string(`ptr`: Long,`setup`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_clone_dkgrunner(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_dkgrunner(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_dkgrunner_new(uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_dkgrunner_initialize_tokio_runtime(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_method_dkgrunner_run(`ptr`: Long,`node`: Long,
+): Long
+external fun uniffi_dkls_fn_clone_instanceid(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_instanceid(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_instanceid_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_instanceid_from_entropy(uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_instanceid_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_clone_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_keyshare(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_keyshare_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_keyshare_print(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_method_keyshare_sk(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_keyshare_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_keyshare_vk(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_clone_networkinterface(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_networkinterface(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_init_callback_vtable_networkinterface(`vtable`: UniffiVTableCallbackInterfaceNetworkInterface,
+): Unit
+external fun uniffi_dkls_fn_method_networkinterface_send(`ptr`: Long,`data`: RustBuffer.ByValue,
+): Long
+external fun uniffi_dkls_fn_method_networkinterface_receive(`ptr`: Long,
+): Long
+external fun uniffi_dkls_fn_clone_networkinterfacetester(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_networkinterfacetester(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_networkinterfacetester_new(`interface`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_networkinterfacetester_test(`ptr`: Long,
+): Long
+external fun uniffi_dkls_fn_method_networkinterfacetester_test_relay(`ptr`: Long,`data`: RustBuffer.ByValue,
+): Long
+external fun uniffi_dkls_fn_clone_nodesecretkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_nodesecretkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_nodesecretkey_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_nodesecretkey_from_entropy(uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_nodesecretkey_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_clone_nodeverifyingkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_nodeverifyingkey(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_nodeverifyingkey_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_nodeverifyingkey_from_sk(`sk`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_nodeverifyingkey_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_nodeverifyingkey_verify(`ptr`: Long,`msg`: RustBuffer.ByValue,`sig`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_clone_signnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_signnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_signnode_from_request_bytes(`req`: RustBuffer.ByValue,`keyshare`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_signnode_from_request_string(`reqStr`: RustBuffer.ByValue,`keyshare`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_constructor_signnode_starter(`message`: RustBuffer.ByValue,`instance`: Long,`threshold`: Byte,`keyshare`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_signnode_do_sign(`ptr`: Long,`interface`: Long,
+): Long
+external fun uniffi_dkls_fn_method_signnode_hash(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_signnode_instance_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_signnode_message(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_signnode_num_parties(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_dkls_fn_method_signnode_party_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_dkls_fn_method_signnode_request_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_signnode_request_string(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_dkls_fn_method_signnode_threshold(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_dkls_fn_method_signnode_update_from_bytes(`ptr`: Long,`req`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_method_signnode_update_from_string(`ptr`: Long,`req`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_clone_signature(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_free_signature(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_dkls_fn_constructor_signature_from_bytes(`bytes`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_dkls_fn_method_signature_to_bytes(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun ffi_dkls_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun ffi_dkls_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun ffi_dkls_rustbuffer_free(`buf`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun ffi_dkls_rustbuffer_reserve(`buf`: RustBuffer.ByValue,`additional`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun ffi_dkls_rust_future_poll_u8(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_u8(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_u8(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_u8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun ffi_dkls_rust_future_poll_i8(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_i8(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_i8(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_i8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun ffi_dkls_rust_future_poll_u16(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_u16(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_u16(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_u16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Short
+external fun ffi_dkls_rust_future_poll_i16(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_i16(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_i16(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_i16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Short
+external fun ffi_dkls_rust_future_poll_u32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_u32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_u32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_u32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Int
+external fun ffi_dkls_rust_future_poll_i32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_i32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_i32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_i32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Int
+external fun ffi_dkls_rust_future_poll_u64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_u64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_u64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_u64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun ffi_dkls_rust_future_poll_i64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_i64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_i64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_i64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun ffi_dkls_rust_future_poll_f32(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_f32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_f32(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_f32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Float
+external fun ffi_dkls_rust_future_poll_f64(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_f64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_f64(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_f64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Double
+external fun ffi_dkls_rust_future_poll_rust_buffer(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_rust_buffer(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_rust_buffer(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_rust_buffer(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun ffi_dkls_rust_future_poll_void(`handle`: Long,`callback`: UniffiRustFutureContinuationCallback,`callbackData`: Long,
+): Unit
+external fun ffi_dkls_rust_future_cancel_void(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_free_void(`handle`: Long,
+): Unit
+external fun ffi_dkls_rust_future_complete_void(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+
     
-        
 }
 
 private fun uniffiCheckContractApiVersion(lib: IntegrityCheckingUniffiLib) {
@@ -929,52 +1049,112 @@ private fun uniffiCheckContractApiVersion(lib: IntegrityCheckingUniffiLib) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
-    if (lib.uniffi_dkls_checksum_method_dkgnode_add_party() != 29419.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_dkgnode_do_keygen() != 727.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_dkgnode_do_keygen() != 5176.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_dkgnode_instance_id() != 20213.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_dkgnode_my_vk() != 41580.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_dkgnode_party_id() != 57079.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_dkgnode_party_vk() != 1845.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_dkgnode_setup_bytes() != 48946.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_dkgnode_setup_string() != 13970.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_dkgnode_threshold() != 20098.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_dkgnode_update_from_bytes() != 18104.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_dkgnode_update_from_string() != 2482.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_dkls_checksum_method_dkgrunner_initialize_tokio_runtime() != 3028.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_dkgrunner_run() != 19288.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_dkgrunner_run() != 21871.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_dkls_checksum_method_instanceid_to_bytes() != 5681.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_keyshare_keyshare_string() != 22532.toShort()) {
-        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
-    }
     if (lib.uniffi_dkls_checksum_method_keyshare_print() != 1832.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_networkinterface_send() != 52769.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_keyshare_sk() != 55147.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_networkinterface_receive() != 4884.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_keyshare_to_bytes() != 27989.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_networkinterfacetester_test() != 30604.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_keyshare_vk() != 28358.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_method_networkinterfacetester_test_relay() != 25872.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_networkinterface_send() != 53560.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_networkinterface_receive() != 28280.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_networkinterfacetester_test() != 7073.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_networkinterfacetester_test_relay() != 1378.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_nodesecretkey_to_bytes() != 54605.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_dkls_checksum_method_nodeverifyingkey_to_bytes() != 48484.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_constructor_dkgnode_for_id() != 22461.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_nodeverifyingkey_verify() != 8873.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_dkls_checksum_constructor_dkgnode_new() != 31766.toShort()) {
+    if (lib.uniffi_dkls_checksum_method_signnode_do_sign() != 9731.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_hash() != 4846.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_instance_id() != 61098.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_message() != 56450.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_num_parties() != 28544.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_party_id() != 44450.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_request_bytes() != 13131.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_request_string() != 20942.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_threshold() != 7683.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_update_from_bytes() != 12014.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signnode_update_from_string() != 57498.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_method_signature_to_bytes() != 54932.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_dkgnode_from_setup_bytes() != 18092.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_dkgnode_from_setup_string() != 61976.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_dkls_checksum_constructor_dkgnode_starter() != 19317.toShort()) {
@@ -989,10 +1169,34 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_dkls_checksum_constructor_instanceid_from_entropy() != 30655.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_dkls_checksum_constructor_keyshare_from_bytes() != 40640.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_dkls_checksum_constructor_networkinterfacetester_new() != 14786.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_dkls_checksum_constructor_nodesecretkey_from_bytes() != 37218.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_nodesecretkey_from_entropy() != 35036.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_dkls_checksum_constructor_nodeverifyingkey_from_bytes() != 18608.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_nodeverifyingkey_from_sk() != 33039.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_signnode_from_request_bytes() != 36914.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_signnode_from_request_string() != 53376.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_signnode_starter() != 26748.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_dkls_checksum_constructor_signature_from_bytes() != 6332.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
 }
@@ -1519,13 +1723,21 @@ public object FfiConverterByteArray: FfiConverterRustBuffer<ByteArray> {
 //
 public interface DkgNodeInterface {
     
-    fun `addParty`(`partyVk`: NodeVerifyingKey)
-    
     suspend fun `doKeygen`(`interface`: NetworkInterface): Keyshare
     
-    fun `myVk`(): NodeVerifyingKey
+    fun `instanceId`(): InstanceId
     
-    fun `partyVk`(): List<NodeVerifyingKey>
+    fun `partyId`(): kotlin.UByte
+    
+    fun `setupBytes`(): kotlin.ByteArray
+    
+    fun `setupString`(): kotlin.String
+    
+    fun `threshold`(): kotlin.UByte
+    
+    fun `updateFromBytes`(`setup`: kotlin.ByteArray)
+    
+    fun `updateFromString`(`setup`: kotlin.String)
     
     companion object
 }
@@ -1554,14 +1766,6 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
         this.handle = 0
         this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
     }
-    constructor(`instance`: InstanceId, `threshold`: kotlin.UByte, `partyVk`: List<NodeVerifyingKey>) :
-        this(UniffiWithHandle, 
-    uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_constructor_dkgnode_new(
-    
-        FfiConverterTypeInstanceId.lower(`instance`),FfiConverterUByte.lower(`threshold`),FfiConverterSequenceTypeNodeVerifyingKey.lower(`partyVk`),_status)
-}
-    )
 
     protected val handle: Long
     protected val cleanable: UniffiCleaner.Cleanable
@@ -1634,20 +1838,8 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
         }
     }
 
-    override fun `addParty`(`partyVk`: NodeVerifyingKey)
-        = 
-    callWithHandle {
-    uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_method_dkgnode_add_party(
-        it,
-        FfiConverterTypeNodeVerifyingKey.lower(`partyVk`),_status)
-}
-    }
     
-    
-
-    
-    @Throws(KeygenException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `doKeygen`(`interface`: NetworkInterface) : Keyshare {
         return uniffiRustCallAsync(
@@ -1663,15 +1855,15 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
         // lift function
         { FfiConverterTypeKeyshare.lift(it) },
         // Error FFI converter
-        KeygenException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
-    override fun `myVk`(): NodeVerifyingKey {
-            return FfiConverterTypeNodeVerifyingKey.lift(
+    override fun `instanceId`(): InstanceId {
+            return FfiConverterTypeInstanceId.lift(
     callWithHandle {
     uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_method_dkgnode_my_vk(
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_instance_id(
         it,
         _status)
 }
@@ -1680,17 +1872,82 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
     }
     
 
-    override fun `partyVk`(): List<NodeVerifyingKey> {
-            return FfiConverterSequenceTypeNodeVerifyingKey.lift(
+    override fun `partyId`(): kotlin.UByte {
+            return FfiConverterUByte.lift(
     callWithHandle {
     uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_method_dkgnode_party_vk(
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_party_id(
         it,
         _status)
 }
     }
     )
     }
+    
+
+    override fun `setupBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_setup_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `setupString`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_setup_string(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `threshold`(): kotlin.UByte {
+            return FfiConverterUByte.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_threshold(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    @Throws(GeneralException::class)override fun `updateFromBytes`(`setup`: kotlin.ByteArray)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_update_from_bytes(
+        it,
+        FfiConverterByteArray.lower(`setup`),_status)
+}
+    }
+    
+    
+
+    
+    @Throws(GeneralException::class)override fun `updateFromString`(`setup`: kotlin.String)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_method_dkgnode_update_from_string(
+        it,
+        FfiConverterString.lower(`setup`),_status)
+}
+    }
+    
     
 
     
@@ -1700,12 +1957,25 @@ open class DkgNode: Disposable, AutoCloseable, DkgNodeInterface
 
     
     companion object {
-         fun `forId`(`instance`: InstanceId, `threshold`: kotlin.UByte, `numParties`: kotlin.UByte, `partyId`: kotlin.UByte): DkgNode {
+        
+    @Throws(GeneralException::class) fun `fromSetupBytes`(`setup`: kotlin.ByteArray): DkgNode {
             return FfiConverterTypeDKGNode.lift(
-    uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_constructor_dkgnode_for_id(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_dkgnode_from_setup_bytes(
     
-        FfiConverterTypeInstanceId.lower(`instance`),FfiConverterUByte.lower(`threshold`),FfiConverterUByte.lower(`numParties`),FfiConverterUByte.lower(`partyId`),_status)
+        FfiConverterByteArray.lower(`setup`),_status)
+}
+    )
+    }
+    
+
+        
+    @Throws(GeneralException::class) fun `fromSetupString`(`setupStr`: kotlin.String): DkgNode {
+            return FfiConverterTypeDKGNode.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_dkgnode_from_setup_string(
+    
+        FfiConverterString.lower(`setupStr`),_status)
 }
     )
     }
@@ -1974,7 +2244,7 @@ open class DkgRunner: Disposable, AutoCloseable, DkgRunnerInterface
     
 
     
-    @Throws(KeygenException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `run`(`node`: DkgNode) : Keyshare {
         return uniffiRustCallAsync(
@@ -1990,7 +2260,7 @@ open class DkgRunner: Disposable, AutoCloseable, DkgRunnerInterface
         // lift function
         { FfiConverterTypeKeyshare.lift(it) },
         // Error FFI converter
-        KeygenException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
@@ -2403,9 +2673,13 @@ public object FfiConverterTypeInstanceId: FfiConverter<InstanceId, Long> {
 //
 public interface KeyshareInterface {
     
-    fun `keyshareString`(): kotlin.String
-    
     fun `print`()
+    
+    fun `sk`(): kotlin.ByteArray
+    
+    fun `toBytes`(): kotlin.ByteArray
+    
+    fun `vk`(): NodeVerifyingKey
     
     companion object
 }
@@ -2506,19 +2780,6 @@ open class Keyshare: Disposable, AutoCloseable, KeyshareInterface
         }
     }
 
-    override fun `keyshareString`(): kotlin.String {
-            return FfiConverterString.lift(
-    callWithHandle {
-    uniffiRustCall() { _status ->
-    UniffiLib.uniffi_dkls_fn_method_keyshare_keyshare_string(
-        it,
-        _status)
-}
-    }
-    )
-    }
-    
-
     override fun `print`()
         = 
     callWithHandle {
@@ -2531,17 +2792,66 @@ open class Keyshare: Disposable, AutoCloseable, KeyshareInterface
     
     
 
+    override fun `sk`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_keyshare_sk(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `toBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_keyshare_to_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `vk`(): NodeVerifyingKey {
+            return FfiConverterTypeNodeVerifyingKey.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_keyshare_vk(
+        it,
+        _status)
+}
+    }
+    )
+    }
     
 
     
 
+    
+
 
     
+    companion object {
+        
+    @Throws(GeneralException::class) fun `fromBytes`(`bytes`: kotlin.ByteArray): Keyshare {
+            return FfiConverterTypeKeyshare.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_keyshare_from_bytes(
     
-    /**
-     * @suppress
-     */
-    companion object
+        FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
+        
+    }
     
 }
 
@@ -2772,7 +3082,7 @@ open class NetworkInterfaceImpl: Disposable, AutoCloseable, NetworkInterface
     }
 
     
-    @Throws(NetworkException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `send`(`data`: kotlin.ByteArray) {
         return uniffiRustCallAsync(
@@ -2789,12 +3099,12 @@ open class NetworkInterfaceImpl: Disposable, AutoCloseable, NetworkInterface
         { Unit },
         
         // Error FFI converter
-        NetworkException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
     
-    @Throws(NetworkException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `receive`() : kotlin.ByteArray {
         return uniffiRustCallAsync(
@@ -2810,7 +3120,7 @@ open class NetworkInterfaceImpl: Disposable, AutoCloseable, NetworkInterface
         // lift function
         { FfiConverterByteArray.lift(it) },
         // Error FFI converter
-        NetworkException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
@@ -2859,7 +3169,7 @@ internal object uniffiCallbackInterfaceNetworkInterface {
                 makeCall,
                 uniffiHandleSuccess,
                 uniffiHandleError,
-                { e: NetworkException -> FfiConverterTypeNetworkError.lower(e) },
+                { e: GeneralException -> FfiConverterTypeGeneralError.lower(e) },
                 uniffiOutDroppedCallback
             )
         }
@@ -2892,7 +3202,7 @@ internal object uniffiCallbackInterfaceNetworkInterface {
                 makeCall,
                 uniffiHandleSuccess,
                 uniffiHandleError,
-                { e: NetworkException -> FfiConverterTypeNetworkError.lower(e) },
+                { e: GeneralException -> FfiConverterTypeGeneralError.lower(e) },
                 uniffiOutDroppedCallback
             )
         }
@@ -3173,7 +3483,7 @@ open class NetworkInterfaceTester: Disposable, AutoCloseable, NetworkInterfaceTe
     }
 
     
-    @Throws(NetworkException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `test`() {
         return uniffiRustCallAsync(
@@ -3190,12 +3500,12 @@ open class NetworkInterfaceTester: Disposable, AutoCloseable, NetworkInterfaceTe
         { Unit },
         
         // Error FFI converter
-        NetworkException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
     
-    @Throws(NetworkException::class)
+    @Throws(GeneralException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `testRelay`(`data`: kotlin.ByteArray) {
         return uniffiRustCallAsync(
@@ -3212,7 +3522,7 @@ open class NetworkInterfaceTester: Disposable, AutoCloseable, NetworkInterfaceTe
         { Unit },
         
         // Error FFI converter
-        NetworkException.ErrorHandler,
+        GeneralException.ErrorHandler,
     )
     }
 
@@ -3353,6 +3663,8 @@ public object FfiConverterTypeNetworkInterfaceTester: FfiConverter<NetworkInterf
 //
 public interface NodeSecretKeyInterface {
     
+    fun `toBytes`(): kotlin.ByteArray
+    
     companion object
 }
 
@@ -3452,17 +3764,51 @@ open class NodeSecretKey: Disposable, AutoCloseable, NodeSecretKeyInterface
         }
     }
 
+    override fun `toBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_nodesecretkey_to_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
     
 
     
 
+    
+
 
     
+    companion object {
+        
+    @Throws(GeneralException::class) fun `fromBytes`(`bytes`: kotlin.ByteArray): NodeSecretKey {
+            return FfiConverterTypeNodeSecretKey.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_nodesecretkey_from_bytes(
     
-    /**
-     * @suppress
-     */
-    companion object
+        FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
+         fun `fromEntropy`(): NodeSecretKey {
+            return FfiConverterTypeNodeSecretKey.lift(
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_nodesecretkey_from_entropy(
+    
+        _status)
+}
+    )
+    }
+    
+
+        
+    }
     
 }
 
@@ -3591,6 +3937,8 @@ public interface NodeVerifyingKeyInterface {
     
     fun `toBytes`(): kotlin.ByteArray
     
+    fun `verify`(`msg`: kotlin.ByteArray, `sig`: Signature)
+    
     companion object
 }
 
@@ -3704,6 +4052,19 @@ open class NodeVerifyingKey: Disposable, AutoCloseable, NodeVerifyingKeyInterfac
     
 
     
+    @Throws(GeneralException::class)override fun `verify`(`msg`: kotlin.ByteArray, `sig`: Signature)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_method_nodeverifyingkey_verify(
+        it,
+        FfiConverterByteArray.lower(`msg`),FfiConverterTypeSignature.lower(`sig`),_status)
+}
+    }
+    
+    
+
+    
 
     
 
@@ -3717,6 +4078,17 @@ open class NodeVerifyingKey: Disposable, AutoCloseable, NodeVerifyingKeyInterfac
     UniffiLib.uniffi_dkls_fn_constructor_nodeverifyingkey_from_bytes(
     
         FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
+         fun `fromSk`(`sk`: NodeSecretKey): NodeVerifyingKey {
+            return FfiConverterTypeNodeVerifyingKey.lift(
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_nodeverifyingkey_from_sk(
+    
+        FfiConverterTypeNodeSecretKey.lower(`sk`),_status)
 }
     )
     }
@@ -3752,19 +4124,792 @@ public object FfiConverterTypeNodeVerifyingKey: FfiConverter<NodeVerifyingKey, L
 }
 
 
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+public interface SignNodeInterface {
+    
+    suspend fun `doSign`(`interface`: NetworkInterface): Signature
+    
+    fun `hash`(): kotlin.ByteArray
+    
+    fun `instanceId`(): InstanceId
+    
+    fun `message`(): kotlin.ByteArray
+    
+    fun `numParties`(): kotlin.UByte
+    
+    fun `partyId`(): kotlin.UByte
+    
+    fun `requestBytes`(): kotlin.ByteArray
+    
+    fun `requestString`(): kotlin.String
+    
+    fun `threshold`(): kotlin.UByte
+    
+    fun `updateFromBytes`(`req`: kotlin.ByteArray)
+    
+    fun `updateFromString`(`req`: kotlin.String)
+    
+    companion object
+}
+
+open class SignNode: Disposable, AutoCloseable, SignNodeInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_dkls_fn_free_signnode(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_dkls_fn_clone_signnode(handle, status)
+        }
+    }
+
+    
+    @Throws(GeneralException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `doSign`(`interface`: NetworkInterface) : Signature {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_dkls_fn_method_signnode_do_sign(
+                uniffiHandle,
+                FfiConverterTypeNetworkInterface.lower(`interface`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_dkls_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_dkls_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_dkls_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypeSignature.lift(it) },
+        // Error FFI converter
+        GeneralException.ErrorHandler,
+    )
+    }
+
+    override fun `hash`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_hash(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `instanceId`(): InstanceId {
+            return FfiConverterTypeInstanceId.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_instance_id(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `message`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_message(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `numParties`(): kotlin.UByte {
+            return FfiConverterUByte.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_num_parties(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `partyId`(): kotlin.UByte {
+            return FfiConverterUByte.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_party_id(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `requestBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_request_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `requestString`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_request_string(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    override fun `threshold`(): kotlin.UByte {
+            return FfiConverterUByte.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_threshold(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    @Throws(GeneralException::class)override fun `updateFromBytes`(`req`: kotlin.ByteArray)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_update_from_bytes(
+        it,
+        FfiConverterByteArray.lower(`req`),_status)
+}
+    }
+    
+    
+
+    
+    @Throws(GeneralException::class)override fun `updateFromString`(`req`: kotlin.String)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signnode_update_from_string(
+        it,
+        FfiConverterString.lower(`req`),_status)
+}
+    }
+    
+    
+
+    
+
+    
+
+
+    
+    companion object {
+        
+    @Throws(GeneralException::class) fun `fromRequestBytes`(`req`: kotlin.ByteArray, `keyshare`: Keyshare): SignNode {
+            return FfiConverterTypeSignNode.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_signnode_from_request_bytes(
+    
+        FfiConverterByteArray.lower(`req`),FfiConverterTypeKeyshare.lower(`keyshare`),_status)
+}
+    )
+    }
+    
+
+        
+    @Throws(GeneralException::class) fun `fromRequestString`(`reqStr`: kotlin.String, `keyshare`: Keyshare): SignNode {
+            return FfiConverterTypeSignNode.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_signnode_from_request_string(
+    
+        FfiConverterString.lower(`reqStr`),FfiConverterTypeKeyshare.lower(`keyshare`),_status)
+}
+    )
+    }
+    
+
+         fun `starter`(`message`: kotlin.String, `instance`: InstanceId, `threshold`: kotlin.UByte, `keyshare`: Keyshare): SignNode {
+            return FfiConverterTypeSignNode.lift(
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_signnode_starter(
+    
+        FfiConverterString.lower(`message`),FfiConverterTypeInstanceId.lower(`instance`),FfiConverterUByte.lower(`threshold`),FfiConverterTypeKeyshare.lower(`keyshare`),_status)
+}
+    )
+    }
+    
+
+        
+    }
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeSignNode: FfiConverter<SignNode, Long> {
+    override fun lower(value: SignNode): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): SignNode {
+        return SignNode(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): SignNode {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: SignNode) = 8UL
+
+    override fun write(value: SignNode, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+public interface SignatureInterface {
+    
+    fun `toBytes`(): kotlin.ByteArray
+    
+    companion object
+}
+
+open class Signature: Disposable, AutoCloseable, SignatureInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_dkls_fn_free_signature(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_dkls_fn_clone_signature(handle, status)
+        }
+    }
+
+    override fun `toBytes`(): kotlin.ByteArray {
+            return FfiConverterByteArray.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_dkls_fn_method_signature_to_bytes(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+
+    
+
+
+    
+    companion object {
+        
+    @Throws(GeneralException::class) fun `fromBytes`(`bytes`: kotlin.ByteArray): Signature {
+            return FfiConverterTypeSignature.lift(
+    uniffiRustCallWithError(GeneralException) { _status ->
+    UniffiLib.uniffi_dkls_fn_constructor_signature_from_bytes(
+    
+        FfiConverterByteArray.lower(`bytes`),_status)
+}
+    )
+    }
+    
+
+        
+    }
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeSignature: FfiConverter<Signature, Long> {
+    override fun lower(value: Signature): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): Signature {
+        return Signature(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): Signature {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: Signature) = 8UL
+
+    override fun write(value: Signature, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
 
 
 
-sealed class GeneralException(message: String): kotlin.Exception(message) {
+
+
+sealed class GeneralException: kotlin.Exception() {
+    
+    class InvalidInput(
         
-        class InvalidInput(message: String) : GeneralException(message)
+        val v1: kotlin.String
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class SignatureException(
         
-        class Generic(message: String) : GeneralException(message)
+        val v1: kotlin.String
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class InvalidSetupMessage(
+        ) : GeneralException() {
+        override val message
+            get() = ""
+    }
+    
+    class MessageSendException(
+        ) : GeneralException() {
+        override val message
+            get() = ""
+    }
+    
+    class KeygenException(
         
+        val v1: kotlin.String
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class AbortProtocol(
+        
+        val v1: kotlin.UInt
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class AbortProtocolAndBanParty(
+        
+        val v1: kotlin.UByte
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class SigningException(
+        
+        val v1: kotlin.String
+        ) : GeneralException() {
+        override val message
+            get() = "v1=${ v1 }"
+    }
+    
+    class InvalidContext(
+        ) : GeneralException() {
+        override val message
+            get() = ""
+    }
+    
+    class Generic(
+        ) : GeneralException() {
+        override val message
+            get() = ""
+    }
+    
 
     companion object ErrorHandler : UniffiRustCallStatusErrorHandler<GeneralException> {
         override fun lift(error_buf: RustBuffer.ByValue): GeneralException = FfiConverterTypeGeneralError.lift(error_buf)
     }
+
+    
 }
 
 /**
@@ -3773,447 +4918,136 @@ sealed class GeneralException(message: String): kotlin.Exception(message) {
 public object FfiConverterTypeGeneralError : FfiConverterRustBuffer<GeneralException> {
     override fun read(buf: ByteBuffer): GeneralException {
         
-            return when(buf.getInt()) {
-            1 -> GeneralException.InvalidInput(FfiConverterString.read(buf))
-            2 -> GeneralException.Generic(FfiConverterString.read(buf))
+
+        return when(buf.getInt()) {
+            1 -> GeneralException.InvalidInput(
+                FfiConverterString.read(buf),
+                )
+            2 -> GeneralException.SignatureException(
+                FfiConverterString.read(buf),
+                )
+            3 -> GeneralException.InvalidSetupMessage()
+            4 -> GeneralException.MessageSendException()
+            5 -> GeneralException.KeygenException(
+                FfiConverterString.read(buf),
+                )
+            6 -> GeneralException.AbortProtocol(
+                FfiConverterUInt.read(buf),
+                )
+            7 -> GeneralException.AbortProtocolAndBanParty(
+                FfiConverterUByte.read(buf),
+                )
+            8 -> GeneralException.SigningException(
+                FfiConverterString.read(buf),
+                )
+            9 -> GeneralException.InvalidContext()
+            10 -> GeneralException.Generic()
             else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
         }
-        
     }
 
     override fun allocationSize(value: GeneralException): ULong {
-        return 4UL
+        return when(value) {
+            is GeneralException.InvalidInput -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterString.allocationSize(value.v1)
+            )
+            is GeneralException.SignatureException -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterString.allocationSize(value.v1)
+            )
+            is GeneralException.InvalidSetupMessage -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is GeneralException.MessageSendException -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is GeneralException.KeygenException -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterString.allocationSize(value.v1)
+            )
+            is GeneralException.AbortProtocol -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterUInt.allocationSize(value.v1)
+            )
+            is GeneralException.AbortProtocolAndBanParty -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterUByte.allocationSize(value.v1)
+            )
+            is GeneralException.SigningException -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterString.allocationSize(value.v1)
+            )
+            is GeneralException.InvalidContext -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is GeneralException.Generic -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+        }
     }
 
     override fun write(value: GeneralException, buf: ByteBuffer) {
         when(value) {
             is GeneralException.InvalidInput -> {
                 buf.putInt(1)
-                Unit
-            }
-            is GeneralException.Generic -> {
-                buf.putInt(2)
-                Unit
-            }
-        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
-    }
-
-}
-
-
-
-
-
-sealed class KeygenException: kotlin.Exception() {
-    
-    /**
-     * Error while serializing or deserializing message data, or invalid message length
-     */
-    class InvalidMessage(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The commitment hash provided does not match the expected value
-     */
-    class InvalidCommitmentHash(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The discrete logarithm proof provided is invalid
-     */
-    class InvalidDLogProof(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The polynomial point provided is invalid
-     */
-    class InvalidPolynomialPoint(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The key refresh operation failed
-     */
-    class InvalidKeyRefresh(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The quorum change operation failed
-     */
-    class InvalidQuorumChange(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The x_i values provided are not unique
-     */
-    class NotUniqueXiValues(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The Big F vector does not match the expected value
-     */
-    class BigFVecMismatch(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The Feldman verification failed
-     */
-    class FailedFelmanVerify(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The public key in the message does not match the party's public key
-     */
-    class PublicKeyMismatch(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * The Big S value does not match the expected value
-     */
-    class BigSMismatch(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * An error occurred in the PPRF (Pseudorandom Function) operation
-     */
-    class PprfException(
-        
-        val v1: kotlin.String
-        ) : KeygenException() {
-        override val message
-            get() = "v1=${ v1 }"
-    }
-    
-    /**
-     * A required message is missing
-     */
-    class MissingMessage(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * Failed to send a message
-     */
-    class SendMessage(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-    /**
-     * A party has decided to abort the protocol
-     */
-    class AbortProtocol(
-        
-        val v1: kotlin.UInt
-        ) : KeygenException() {
-        override val message
-            get() = "v1=${ v1 }"
-    }
-    
-    class InvalidContext(
-        ) : KeygenException() {
-        override val message
-            get() = ""
-    }
-    
-
-    companion object ErrorHandler : UniffiRustCallStatusErrorHandler<KeygenException> {
-        override fun lift(error_buf: RustBuffer.ByValue): KeygenException = FfiConverterTypeKeygenError.lift(error_buf)
-    }
-
-    
-}
-
-/**
- * @suppress
- */
-public object FfiConverterTypeKeygenError : FfiConverterRustBuffer<KeygenException> {
-    override fun read(buf: ByteBuffer): KeygenException {
-        
-
-        return when(buf.getInt()) {
-            1 -> KeygenException.InvalidMessage()
-            2 -> KeygenException.InvalidCommitmentHash()
-            3 -> KeygenException.InvalidDLogProof()
-            4 -> KeygenException.InvalidPolynomialPoint()
-            5 -> KeygenException.InvalidKeyRefresh()
-            6 -> KeygenException.InvalidQuorumChange()
-            7 -> KeygenException.NotUniqueXiValues()
-            8 -> KeygenException.BigFVecMismatch()
-            9 -> KeygenException.FailedFelmanVerify()
-            10 -> KeygenException.PublicKeyMismatch()
-            11 -> KeygenException.BigSMismatch()
-            12 -> KeygenException.PprfException(
-                FfiConverterString.read(buf),
-                )
-            13 -> KeygenException.MissingMessage()
-            14 -> KeygenException.SendMessage()
-            15 -> KeygenException.AbortProtocol(
-                FfiConverterUInt.read(buf),
-                )
-            16 -> KeygenException.InvalidContext()
-            else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
-        }
-    }
-
-    override fun allocationSize(value: KeygenException): ULong {
-        return when(value) {
-            is KeygenException.InvalidMessage -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.InvalidCommitmentHash -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.InvalidDLogProof -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.InvalidPolynomialPoint -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.InvalidKeyRefresh -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.InvalidQuorumChange -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.NotUniqueXiValues -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.BigFVecMismatch -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.FailedFelmanVerify -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.PublicKeyMismatch -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.BigSMismatch -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.PprfException -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-                + FfiConverterString.allocationSize(value.v1)
-            )
-            is KeygenException.MissingMessage -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.SendMessage -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-            is KeygenException.AbortProtocol -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-                + FfiConverterUInt.allocationSize(value.v1)
-            )
-            is KeygenException.InvalidContext -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-        }
-    }
-
-    override fun write(value: KeygenException, buf: ByteBuffer) {
-        when(value) {
-            is KeygenException.InvalidMessage -> {
-                buf.putInt(1)
-                Unit
-            }
-            is KeygenException.InvalidCommitmentHash -> {
-                buf.putInt(2)
-                Unit
-            }
-            is KeygenException.InvalidDLogProof -> {
-                buf.putInt(3)
-                Unit
-            }
-            is KeygenException.InvalidPolynomialPoint -> {
-                buf.putInt(4)
-                Unit
-            }
-            is KeygenException.InvalidKeyRefresh -> {
-                buf.putInt(5)
-                Unit
-            }
-            is KeygenException.InvalidQuorumChange -> {
-                buf.putInt(6)
-                Unit
-            }
-            is KeygenException.NotUniqueXiValues -> {
-                buf.putInt(7)
-                Unit
-            }
-            is KeygenException.BigFVecMismatch -> {
-                buf.putInt(8)
-                Unit
-            }
-            is KeygenException.FailedFelmanVerify -> {
-                buf.putInt(9)
-                Unit
-            }
-            is KeygenException.PublicKeyMismatch -> {
-                buf.putInt(10)
-                Unit
-            }
-            is KeygenException.BigSMismatch -> {
-                buf.putInt(11)
-                Unit
-            }
-            is KeygenException.PprfException -> {
-                buf.putInt(12)
                 FfiConverterString.write(value.v1, buf)
                 Unit
             }
-            is KeygenException.MissingMessage -> {
-                buf.putInt(13)
+            is GeneralException.SignatureException -> {
+                buf.putInt(2)
+                FfiConverterString.write(value.v1, buf)
                 Unit
             }
-            is KeygenException.SendMessage -> {
-                buf.putInt(14)
+            is GeneralException.InvalidSetupMessage -> {
+                buf.putInt(3)
                 Unit
             }
-            is KeygenException.AbortProtocol -> {
-                buf.putInt(15)
+            is GeneralException.MessageSendException -> {
+                buf.putInt(4)
+                Unit
+            }
+            is GeneralException.KeygenException -> {
+                buf.putInt(5)
+                FfiConverterString.write(value.v1, buf)
+                Unit
+            }
+            is GeneralException.AbortProtocol -> {
+                buf.putInt(6)
                 FfiConverterUInt.write(value.v1, buf)
                 Unit
             }
-            is KeygenException.InvalidContext -> {
-                buf.putInt(16)
+            is GeneralException.AbortProtocolAndBanParty -> {
+                buf.putInt(7)
+                FfiConverterUByte.write(value.v1, buf)
+                Unit
+            }
+            is GeneralException.SigningException -> {
+                buf.putInt(8)
+                FfiConverterString.write(value.v1, buf)
+                Unit
+            }
+            is GeneralException.InvalidContext -> {
+                buf.putInt(9)
+                Unit
+            }
+            is GeneralException.Generic -> {
+                buf.putInt(10)
                 Unit
             }
         }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
     }
 
-}
-
-
-
-
-
-sealed class NetworkException: kotlin.Exception() {
-    
-    class MessageSendException(
-        ) : NetworkException() {
-        override val message
-            get() = ""
-    }
-    
-
-    companion object ErrorHandler : UniffiRustCallStatusErrorHandler<NetworkException> {
-        override fun lift(error_buf: RustBuffer.ByValue): NetworkException = FfiConverterTypeNetworkError.lift(error_buf)
-    }
-
-    
-}
-
-/**
- * @suppress
- */
-public object FfiConverterTypeNetworkError : FfiConverterRustBuffer<NetworkException> {
-    override fun read(buf: ByteBuffer): NetworkException {
-        
-
-        return when(buf.getInt()) {
-            1 -> NetworkException.MessageSendException()
-            else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
-        }
-    }
-
-    override fun allocationSize(value: NetworkException): ULong {
-        return when(value) {
-            is NetworkException.MessageSendException -> (
-                // Add the size for the Int that specifies the variant plus the size needed for all fields
-                4UL
-            )
-        }
-    }
-
-    override fun write(value: NetworkException, buf: ByteBuffer) {
-        when(value) {
-            is NetworkException.MessageSendException -> {
-                buf.putInt(1)
-                Unit
-            }
-        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
-    }
-
-}
-
-
-
-
-/**
- * @suppress
- */
-public object FfiConverterSequenceTypeNodeVerifyingKey: FfiConverterRustBuffer<List<NodeVerifyingKey>> {
-    override fun read(buf: ByteBuffer): List<NodeVerifyingKey> {
-        val len = buf.getInt()
-        return List<NodeVerifyingKey>(len) {
-            FfiConverterTypeNodeVerifyingKey.read(buf)
-        }
-    }
-
-    override fun allocationSize(value: List<NodeVerifyingKey>): ULong {
-        val sizeForLength = 4UL
-        val sizeForItems = value.map { FfiConverterTypeNodeVerifyingKey.allocationSize(it) }.sum()
-        return sizeForLength + sizeForItems
-    }
-
-    override fun write(value: List<NodeVerifyingKey>, buf: ByteBuffer) {
-        buf.putInt(value.size)
-        value.iterator().forEach {
-            FfiConverterTypeNodeVerifyingKey.write(it, buf)
-        }
-    }
 }
 
 
